@@ -378,3 +378,43 @@ const countdownFunc = setInterval(function() {
 }, 1000);
 </script>
 
+
+<!-- 💖 Kalp Şeklinde Fare ve Dokunma Efekti 💖 -->
+<script>
+function createHeart(x, y) {
+  let heart = document.createElement("div");
+  heart.innerHTML = "💖";
+  heart.style.position = "fixed";
+  heart.style.left = x + "px";
+  heart.style.top = y + "px";
+  heart.style.pointerEvents = "none";
+  heart.style.transform = "translate(-50%, -50%) scale(1)";
+  heart.style.fontSize = "22px";
+  heart.style.opacity = "1";
+  heart.style.transition = "transform 1s ease-out, opacity 1s ease-out";
+  heart.style.zIndex = "9999";
+  document.body.appendChild(heart);
+
+  // Animasyon
+  setTimeout(() => {
+    heart.style.transform = "translate(-50%, -150%) scale(2)";
+    heart.style.opacity = "0";
+  }, 50);
+
+  // Yok et
+  setTimeout(() => {
+    heart.remove();
+  }, 1000);
+}
+
+// Farede çalışsın
+document.addEventListener("mousemove", function(e) {
+  createHeart(e.clientX, e.clientY);
+});
+
+// Telefonda çalışsın
+document.addEventListener("touchstart", function(e) {
+  let touch = e.touches[0];
+  createHeart(touch.clientX, touch.clientY);
+});
+</script>
