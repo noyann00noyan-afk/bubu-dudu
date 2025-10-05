@@ -433,7 +433,20 @@ document.addEventListener("touchstart", function(e) {
     100% { filter: brightness(1.2); }
   }
 
-  /* Baloncuk */
+  <!-- 💕 Nadir çıkan romantik baloncuklar 💕 -->
+<style>
+  body {
+    background: linear-gradient(135deg, #ffb6d5, #d38bff);
+    overflow-x: hidden;
+    position: relative;
+    animation: bgGlow 6s ease-in-out infinite alternate;
+  }
+
+  @keyframes bgGlow {
+    0% { filter: brightness(1); }
+    100% { filter: brightness(1.15); }
+  }
+
   .love-bubble {
     position: fixed;
     bottom: 0;
@@ -441,9 +454,9 @@ document.addEventListener("touchstart", function(e) {
     font-family: 'Comic Sans MS', cursive;
     font-size: 18px;
     white-space: nowrap;
-    animation: floatUp 6s linear forwards;
+    animation: floatUp 8s linear forwards;
     text-shadow: 0 0 10px #ffb6c1, 0 0 20px #ff69b4;
-    opacity: 0.9;
+    opacity: 0.8;
     z-index: 5;
   }
 
@@ -453,27 +466,42 @@ document.addEventListener("touchstart", function(e) {
       opacity: 1;
     }
     100% {
-      transform: translateY(-800px) scale(1.5);
+      transform: translateY(-900px) scale(1.6);
       opacity: 0;
     }
   }
 </style>
 
 <script>
+  const loveMessages = [
+    "Seni seviyorum 💕",
+    "Kalbim seninle 💖",
+    "Bir tek sen 💞",
+    "Aşkım 💋",
+    "Canımın içi 💗",
+    "Sen benim her şeyimsin 💘",
+    "Bir ömür senle 💍",
+    "Gözlerimdeki ışıksın ✨",
+    "Rüyalarımın meleği 💫",
+    "Sonsuza dek sen 💓"
+  ];
+
   function createLoveBubble() {
     const bubble = document.createElement('div');
     bubble.classList.add('love-bubble');
-    bubble.textContent = "Seni Seviyorum 💕";
+    bubble.textContent = loveMessages[Math.floor(Math.random() * loveMessages.length)];
 
     bubble.style.left = Math.random() * window.innerWidth + 'px';
     bubble.style.fontSize = (16 + Math.random() * 10) + 'px';
-    bubble.style.animationDuration = (5 + Math.random() * 3) + 's';
-    bubble.style.opacity = 0.7 + Math.random() * 0.3;
+    bubble.style.animationDuration = (6 + Math.random() * 3) + 's';
+    bubble.style.opacity = 0.6 + Math.random() * 0.4;
     
     document.body.appendChild(bubble);
-    setTimeout(() => bubble.remove(), 8000);
+    setTimeout(() => bubble.remove(), 9000);
   }
 
-  // Baloncukları aralıkla üret
-  setInterval(createLoveBubble, 800);
+  // Daha nadir baloncuk üretimi (yaklaşık 4–6 saniyede bir)
+  setInterval(() => {
+    if (Math.random() < 0.4) createLoveBubble();
+  }, 4000);
 </script>
