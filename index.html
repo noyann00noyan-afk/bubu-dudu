@@ -419,19 +419,27 @@ document.addEventListener("touchstart", function(e) {
 });
 </script>
 
-<!-- 💕 Loş pembe-mor arka plan + Seni Seviyorum baloncukları 💕 -->
-<style>
-  body {
-    background: linear-gradient(135deg, #ffb6d5, #d38bff);
-    overflow-x: hidden;
-    position: relative;
-    animation: bgGlow 6s ease-in-out infinite alternate;
-  }
+/* Arka plan animasyonu */
+body {
+  height: 100vh;
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(-45deg, #ff9ccf, #8c77ff, #6ec1ff, #ff9ccf);
+  background-size: 400% 400%;
+  animation: romanticGradient 20s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  @keyframes bgGlow {
-    0% { filter: brightness(1); }
-    100% { filter: brightness(1.2); }
-  }
+/* Renk geçiş animasyonu */
+@keyframes romanticGradient {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 50% 100%; }
+  50% { background-position: 100% 50%; }
+  75% { background-position: 50% 0%; }
+  100% { background-position: 0% 50%; }
+}
 
   <!-- 💕 Nadir çıkan romantik baloncuklar 💕 -->
 <style>
@@ -536,3 +544,4 @@ document.addEventListener("touchstart", function(e) {
     playMusic();
   });
 </script>
+
