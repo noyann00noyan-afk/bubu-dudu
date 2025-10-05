@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sana Özel 💖</title>
+<style>
+  body {
+    margin:0;
+    padding:0;
+    background: linear-gradient(135deg,#ffb6c1,#ff69b4);
+    font-family: 'Arial', sans-serif;
+    color:white;
+    text-align:center;
+    overflow-x:hidden;
+    position: relative;
+  }
+
+  h1 {
+    font-size:2rem;
+    margin-top:60px;
+    padding:0 15px;
+    text-shadow:2px 2px 10px rgba(0,0,0,0.3);
+    opacity:0;
+    animation: fadeIn 3s ease-out forwards;
+    position: relative;
+  }
+
+  @keyframes fadeIn { to {opacity:1;} }
+
+  .sparkleText {
+    position:absolute;
+    width:6px;
+    height:6px;
+    background:white;
+    border-radius:50%;
+    opacity:0.8;
+    pointer-events:none;
+    animation: twinkle 1s infinite;
+  }
+
+  @keyframes twinkle {
+    0%,100% { opacity:0.2; transform:scale(1);}
+    50% { opacity:1; transform:scale(1.5);}
+  }
+
+  .gallery {
+    margin-top:30px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:20px;
+    padding-bottom:60px;
+    position: relative;
+  }
+
+  .polaroid {
+    background:white;
+    padding:10px 10px 30px 10px;
+    border-radius:10px;
+    box-shadow:0 8px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position:relative;
+    overflow:hidden;
+  }
+
+  .polaroid img {
+    display:block;
+    width:150px;
+    height:150px;
+    object-fit:cover;
+    border-radius:5px;
+  }
+
+  .polaroid:hover {
+    transform: scale(1.1) rotate(-2deg);
+    box-shadow:0 12px 20px rgba(0,0,0,0.5);
+  }
+
+  /* Kalpler */
+  .heart {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    transform: rotate(45deg);
+    animation: float 6s linear infinite;
+    opacity:0.7;
+    z-index:0;
+  }
+
+  .heart::before, .heart::after {
+    content:''; 
+    position:absolute;
+    width:20px;
+    height:20px;
+    background-color:red;
+    border-radius:50%;
+  }
+
+  .heart::before { top:-10px; left:0; }
+  .heart::after { left:-10px; top:0; }
+
+  @keyframes float {
+    0% { transform: translateY(0) rotate(45deg); opacity:1; }
+    100% { transform: translateY(-800px) rotate(45deg); opacity:0; }
+  }
+
+  @media(min-width:768px){
+    h1 { font-size:2.5rem; }
+    .polaroid img { width:180px; height:180px; }
+  }
+
+  /* Müzik butonu */
+  .play-btn {
+    position: fixed;
+    top:20px;
+    right:20px;
+    width:60px;
+    height:60px;
+    background:#ff69b4;
+    border:none;
+    border-radius:50%;
+    cursor:pointer;
+    box-shadow:0 4px 8px rgba(0,0,0,0.3);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    color:white;
+    z-index:10;
+  }
+
+  .play-btn:hover { background:#ff85c1; }
+
+  /* Alt tarafta yanıp sönen yıldızlar */
+  .star {
+    position: fixed;
+    width:3px;
+    height:3px;
+    background:white;
+    border-radius:50%;
+    opacity:0;
+    animation: blink 2s infinite;
+  }
+
+  @keyframes blink {
+    0%,100% { opacity:0; }
+    50% { opacity:1; }
+  }
+
+  /* Kar efekti */
+  .snowflake {
+    position: fixed;
+    top:-10px;
+    background:white;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    opacity:0.8;
+    pointer-events:none;
+    animation: fall linear infinite;
+  }
+
+  @keyframes fall {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(100vh); }
+  }
+
+</style>
+</head>
+<body>
+
+<h1>Seninle geçen her an, hayatımın en değerli anı.<br>İyi ki varsın 🤍</h1>
+
+<div class="gallery">
+  <div class="polaroid"><img src="foto1.jpg" alt=""></div>
+  <div class="polaroid"><img src="foto2.jpg" alt=""></div>
+  <div class="polaroid"><img src="foto3.jpg" alt=""></div>
+  <div class="polaroid"><img src="foto4.jpg" alt=""></div>
+  <div class="polaroid"><img src="foto5.jpg" alt=""></div>
+</div>
+
+<!-- Bubu & Dudu karakterleri -->
+<img src="bubu.png" class="character bubu" alt="Bubu">
+<img src="dudu.png" class="character dudu" alt="Dudu">
+
+<!-- Müzik butonu -->
+<button class="play-btn">❤</button>
+
+<audio id="bgMusic" loop>
+  <source src="sarki.mp3" type="audio/mpeg">
+  Tarayıcınız müziği desteklemiyor.
+</audio>
+
+<script>
+  // Kalpler animasyonu
+  setInterval(()=>{
+    const heart=document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left=Math.random()*window.innerWidth+'px';
+    heart.style.width=heart.style.height=(10+Math.random()*20)+'px';
+    heart.style.backgroundColor=['#ff0000','#ff69b4','#ff1493','#ff77aa'][Math.floor(Math.random()*4)];
+    heart.style.opacity=Math.random();
+    document.body.appendChild(heart);
+    setTimeout(()=>{heart.remove()},6000);
+  },200);
+
+  // Parıltılar galeride
+  const gallery=document.querySelector('.gallery');
+  for(let i=0;i<70;i++){
+    const sparkle=document.createElement('div');
+    sparkle.classList.add('sparkleText');
+    sparkle.style.left=Math.random()*gallery.offsetWidth+'px';
+    sparkle.style.top=Math.random()*gallery.offsetHeight+'px';
+    gallery.appendChild(sparkle);
+  }
+
+  // Parıltılar başlıkta
+  const title = document.querySelector('h1');
+  for(let i=0;i<30;i++){
+    const sparkle = document.createElement('div');
+    sparkle.classList.add('sparkleText');
+    sparkle.style.left=Math.random()*title.offsetWidth+'px';
+    sparkle.style.top=Math.random()*title.offsetHeight+'px';
+    title.appendChild(sparkle);
+  }
+
+  // Bubu & Dudu animasyon
+  const characters=document.querySelectorAll('.character');
+  setInterval(()=>{
+    characters.forEach(c=>{
+      c.style.left=Math.random()*window.innerWidth+'px';
+    });
+  },4000);
+
+  // Müzik çalma butonu
+  const btn = document.querySelector('.play-btn');
+  const music = document.getElementById('bgMusic');
+  btn.addEventListener('click', ()=>{
+    music.play();
+    btn.style.display='none';
+  });
+
+  // Alt tarafta yanıp sönen yıldızlar
+  for(let i=0;i<50;i++){
+    const star = document.createElement('div');
+    star.classList.add('star');
+    star.style.left=Math.random()*window.innerWidth+'px';
+    star.style.bottom=Math.random()*100+'px';
+    star.style.animationDuration=(1+Math.random()*2)+'s';
+    document.body.appendChild(star);
+  }
+
+  // Kar efekti
+  setInterval(()=>{
+    const snow = document.createElement('div');
+    snow.classList.add('snowflake');
+    snow.style.left=Math.random()*window.innerWidth+'px';
+    snow.style.width=snow.style.height=(4+Math.random()*6)+'px';
+    snow.style.animationDuration=(5+Math.random()*5)+'s';
+    document.body.appendChild(snow);
+    setTimeout(()=>{snow.remove()},10000);
+  },200);
+
+</script>
+
+</body>
+</html>
+
+
+<!-- Bubu & Dudu resimleri -->
+<img src="foto6.jpg" class="character bubu" alt="Bubu">
+<img src="foto7.jpg" class="character dudu" alt="Dudu">
+
+<style>
+.character {
+    position: fixed;
+    width:50px;
+    height:50px;
+    pointer-events:none;
+    animation: floatCharacter linear infinite;
+}
+
+@keyframes floatCharacter {
+    0% { transform: translateY(100vh) rotate(0deg);}
+    100% { transform: translateY(-100px) rotate(360deg);}
+}
+
+.bubu { left:10%; animation-duration:12s; }
+.dudu { left:80%; animation-duration:15s; }
+</style>
+
+<script>
+// Bubu & Dudu animasyon (ekrandaki yatay pozisyonu rastgele değiştirir)
+const characters = document.querySelectorAll('.character');
+setInterval(()=>{
+    characters.forEach(c=>{
+        c.style.left = Math.random() * (window.innerWidth - 50) + 'px';
+    });
+}, 4000);
+</script>
