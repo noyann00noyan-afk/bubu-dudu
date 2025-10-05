@@ -311,144 +311,50 @@
 
 
 
-<!-- 🎀 Geri Sayım + GIF Kolajı (hizalı sürüm) -->
-<div class="middle-section">
-  <div class="countdown-container">
-    <h2>🎂 Bebeğimin doğum gününe 
-    <span id="days">00</span> gün 
-    <span id="hours">00</span> saat 
-    <span id="minutes">00</span> dakika 
-    <span id="seconds">00</span> saniye kaldı 💖</h2>
-    <div class="sparkle-overlay"></div>
-  </div>
-
-  <div class="gif-section">
-    <img src="gif1.gif" alt="Gif 1">
-    <img src="gif2.gif" alt="Gif 2">
-    <img src="gif3.gif" alt="Gif 3">
-  </div>
+<!-- Doğum Günü Geri Sayacı -->
+<div class="countdown-container">
+  <h2>🎂 Bebeğimin doğum gününe <span id="days">00</span> gün 
+  <span id="hours">00</span> saat 
+  <span id="minutes">00</span> dakika 
+  <span id="seconds">00</span> saniye kaldı 💖</h2>
 </div>
 
 <style>
-/* Ortak düzen alanı */
-.middle-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 40px auto;
-  padding: 10px;
-  width: 100%;
-  max-width: 800px;
-  box-sizing: border-box;
-}
-
-/* Geri sayım kutusu */
 .countdown-container {
-  margin: 20px 0;
-  padding: 25px;
-  background: radial-gradient(circle at center, #ffb6c1 0%, #ff69b4 60%, #ff1493 100%);
-  border-radius: 25px;
-  box-shadow: 0 0 30px rgba(255,105,180,0.6), inset 0 0 20px rgba(255,255,255,0.4);
-  text-align: center;
-  width: 100%;
-  animation: pulseGlow 3s infinite alternate;
-  position: relative;
-  overflow: hidden;
+  margin-top:40px;
+  padding:20px;
+  background:linear-gradient(135deg, #ffb6c1, #ff69b4);
+  border-radius:20px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.3);
+  color:white;
+  font-family:'Comic Sans MS', cursive;
+  font-size:1.2rem;
+  text-align:center;
+  animation: fadeIn 2s ease-out;
+  position:relative;
+  overflow:hidden;
 }
 
-.countdown-container h2 {
-  color: white;
-  font-family: 'Comic Sans MS', cursive;
-  font-size: 1.4rem;
-  line-height: 1.6rem;
-  text-shadow: 0 0 15px #fff, 0 0 25px #ff69b4, 0 0 35px #ff1493;
-  animation: rainbowText 4s linear infinite;
-  position: relative;
-  z-index: 2;
-}
-
-/* GIF kolaj */
-.gif-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-top: 20px;
-  background: linear-gradient(135deg, #ffb6c1, #ff69b4);
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-  padding: 15px;
-}
-
-.gif-section img {
-  width: 100px;
-  height: 100px;
-  border-radius: 15px;
-  box-shadow: 0 6px 12px rgba(255,255,255,0.5);
-  transition: transform 0.5s, box-shadow 0.5s;
-  animation: float 3s ease-in-out infinite alternate;
-}
-
-.gif-section img:hover {
-  transform: scale(1.2) rotate(-8deg);
-  box-shadow: 0 10px 20px rgba(255,255,255,0.8);
-}
-
-/* 💖 Efektler */
-@keyframes pulseGlow {
-  0% { box-shadow: 0 0 20px rgba(255,182,193,0.5), inset 0 0 10px rgba(255,255,255,0.3); }
-  100% { box-shadow: 0 0 60px rgba(255,105,180,0.8), inset 0 0 25px rgba(255,255,255,0.6); }
-}
-
-@keyframes rainbowText {
-  0% { color: #fff0f6; text-shadow: 0 0 10px #ffb6c1, 0 0 20px #ff69b4; }
-  25% { color: #ffe6f0; text-shadow: 0 0 15px #ff85c1, 0 0 30px #ff4da6; }
-  50% { color: #fff; text-shadow: 0 0 20px #ff69b4, 0 0 40px #ff1493; }
-  75% { color: #fff0f6; text-shadow: 0 0 25px #ff85c1, 0 0 50px #ff4da6; }
-  100% { color: #fff0f6; text-shadow: 0 0 10px #ffb6c1, 0 0 20px #ff69b4; }
-}
-
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0); }
-}
-
-/* ✨ Parlama efekti */
-.sparkle-overlay {
+/* Parıltı efekti */
+.countdown-container::after {
+  content:"";
   position:absolute;
-  top:0;
-  left:0;
-  width:100%;
+  top:0; left:-50%;
+  width:50%;
   height:100%;
-  background:radial-gradient(circle, rgba(255,255,255,0.9) 0%, transparent 70%);
-  opacity:0;
-  animation:sparkleFlash 5s infinite ease-in-out;
-  pointer-events:none;
+  background:rgba(255,255,255,0.3);
+  transform:skewX(-20deg);
+  animation: shine 4s infinite linear;
 }
 
-@keyframes sparkleFlash {
-  0%, 100% { opacity:0; transform:scale(0.8); }
-  50% { opacity:0.6; transform:scale(1.2); }
-}
-
-/* 📱 Mobil uyum */
-@media (max-width: 600px) {
-  .countdown-container h2 {
-    font-size: 1.1rem;
-    line-height: 1.4rem;
-  }
-  .gif-section img {
-    width: 80px;
-    height: 80px;
-  }
+@keyframes shine {
+  0% { left:-50%; }
+  100% { left:150%; }
 }
 </style>
 
 <script>
-// Geri sayım (9 Şubat 2026 00:00)
+// Geri sayım tarihi (9 Şubat 2026 00:00)
 const countdownDate = new Date("Feb 9, 2026 00:00:00").getTime();
 
 const countdownFunc = setInterval(function() {
@@ -471,3 +377,4 @@ const countdownFunc = setInterval(function() {
   }
 }, 1000);
 </script>
+
