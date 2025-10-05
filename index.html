@@ -300,3 +300,33 @@ setInterval(()=>{
     });
 }, 4000);
 </script>
+<!-- Alta gif kolaj -->
+<div class="gif-section">
+  <img src="gif1.gif" alt="Gif 1">
+  <img src="gif2.gif" alt="Gif 2">
+  <img src="gif3.gif" alt="Gif 3">
+</div>
+
+<style>
+.gif-section {
+  margin-top:60px;
+  margin-bottom:60px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:20px;
+}
+
+.gif-section img {
+  width:120px;
+  height:120px;
+  border-radius:15px;
+  box-shadow:0 6px 12px rgba(0,0,0,0.3);
+  transition: transform 0.3s;
+}
+
+.gif-section img:hover {
+  transform: scale(1.2) rotate(-5deg);
+}
+</style>
+
