@@ -506,3 +506,33 @@ document.addEventListener("touchstart", function(e) {
   }, 4000);
 </script>
 
+<!-- 🎵 Otomatik müzik çalma kodu -->
+<audio id="bgMusic" autoplay loop>
+  <source src="sarki.mp3" type="audio/mpeg">
+  Tarayıcınız müziği desteklemiyor.
+</audio>
+
+<script>
+  // Bazı tarayıcılar autoplay'i engellediğinde sessiz başlatıp sesi açar
+  const music = document.getElementById("bgMusic");
+
+  window.addEventListener("load", () => {
+    const playMusic = () => {
+      const playPromise = music.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            console.log("Müzik otomatik çalıyor 🎵");
+          })
+          .catch(() => {
+            // Otomatik çalma engellendiyse dokunma sonrası başlat
+            document.body.addEventListener("click", () => {
+              music.play();
+            }, { once: true });
+          });
+      }
+    };
+
+    playMusic();
+  });
+</script>
