@@ -418,3 +418,62 @@ document.addEventListener("touchstart", function(e) {
   createHeart(touch.clientX, touch.clientY);
 });
 </script>
+
+<!-- 💕 Loş pembe-mor arka plan + Seni Seviyorum baloncukları 💕 -->
+<style>
+  body {
+    background: linear-gradient(135deg, #ffb6d5, #d38bff);
+    overflow-x: hidden;
+    position: relative;
+    animation: bgGlow 6s ease-in-out infinite alternate;
+  }
+
+  @keyframes bgGlow {
+    0% { filter: brightness(1); }
+    100% { filter: brightness(1.2); }
+  }
+
+  /* Baloncuk */
+  .love-bubble {
+    position: fixed;
+    bottom: 0;
+    color: white;
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 18px;
+    white-space: nowrap;
+    animation: floatUp 6s linear forwards;
+    text-shadow: 0 0 10px #ffb6c1, 0 0 20px #ff69b4;
+    opacity: 0.9;
+    z-index: 5;
+  }
+
+  @keyframes floatUp {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-800px) scale(1.5);
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  function createLoveBubble() {
+    const bubble = document.createElement('div');
+    bubble.classList.add('love-bubble');
+    bubble.textContent = "Seni Seviyorum 💕";
+
+    bubble.style.left = Math.random() * window.innerWidth + 'px';
+    bubble.style.fontSize = (16 + Math.random() * 10) + 'px';
+    bubble.style.animationDuration = (5 + Math.random() * 3) + 's';
+    bubble.style.opacity = 0.7 + Math.random() * 0.3;
+    
+    document.body.appendChild(bubble);
+    setTimeout(() => bubble.remove(), 8000);
+  }
+
+  // Baloncukları aralıkla üret
+  setInterval(createLoveBubble, 800);
+</script>
